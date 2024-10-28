@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de GIFs de Sentinel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #gif-container {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de GIFs de Sentinel</h1>
+    <form id="coordinates-form">
+        <label for="coord1">Coordenada 1:</label>
+        <input type="text" id="coord1" required>
+        <br>
+        <label for="coord2">Coordenada 2:</label>
+        <input type="text" id="coord2" required>
+        <br>
+        <label for="coord3">Coordenada 3:</label>
+        <input type="text" id="coord3" required>
+        <br>
+        <label for="coord4">Coordenada 4:</label>
+        <input type="text" id="coord4" required>
+        <br>
+        <button type="submit">Generar GIFs</button>
+    </form>
+    <div id="gif-container"></div>
+
+    <script>
+        document.getElementById('coordinates-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar que la página se recargue
+
+            // Obtener las coordenadas del formulario
+            const coord1 = parseFloat(document.getElementById('coord1').value);
+            const coord2 = parseFloat(document.getElementById('coord2').value);
+            const coord3 = parseFloat(document.getElementById('coord3').value);
+            const coord4 = parseFloat(document.getElementById('coord4').value);
+
+            const coordinates = { coordenadas: [coord1, coord2, coord3, coord4] };
+
+            // Enviar las coordenadas al servidor
+            fetch('http://localhost:5000/receive-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(coordinates)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const gifContainer = document.getElementById('gif-container');
+                gifContainer.innerHTML = ''; 
+
+                if (data.img_ndvi) {
+                    const imgNDVI = document.createElement('img');
+                    imgNDVI.src = 'data:image/gif;base64,' + data.img_ndvi;
+                    gifContainer.appendChild(imgNDVI);
+                } else {
+                    gifContainer.innerHTML = '<p>No se procesaron imágenes NDVI.</p>';
+                }
+
+                if (data.img_tc) {
+                    const imgTC = document.createElement('img');
+                    imgTC.src = 'data:image/gif;base64,' + data.img_tc;
+                    gifContainer.appendChild(imgTC);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes True Color.</p>';
+                }
+
+                if (data.img_ndwi) {
+                    const imgNDWI = document.createElement('img');
+                    imgNDWI.src = 'data:image/gif;base64,' + data.img_ndwi;
+                    gifContainer.appendChild(imgNDWI);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes NDWI.</p>';
+                }
+                if (data.img_process_ndwi) {
+                    const imgNDWI_processed = document.createElement('img');
+                    imgNDWI_processed.src = 'data:image/gif;base64,' + data.img_process_ndwi;
+                    gifContainer.appendChild(imgNDWI_processed);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes NDWI.</p>';
+                }
+                if (data.img_process_ndvi) {
+                    const imgNDVI_processed = document.createElement('img');
+                    imgNDVI_processed.src = 'data:image/gif;base64,' + data.img_process_ndvi;
+                    gifContainer.appendChild(imgNDVI_processed);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes NDVI.</p>';
+                }
+                if (data.gif_process_ndvi) {
+                    const gifNDVI_processed = document.createElement('img');
+                    gifNDVI_processed.src = 'data:image/gif;base64,' + data.gif_process_ndvi;
+                    gifContainer.appendChild(gifNDVI_processed);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes NDVI.</p>';
+                }
+                if (data.calles) {
+                    let calles_png = document.createElement('img');
+                    calles_png.src = 'data:image/png;base64,' + data.calles; 
+                    gifContainer.appendChild(calles_png);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes de calles.</p>';
+                }
+                if (data.predicciones) {
+                    let predicciones = document.createElement('img');
+                    predicciones.src = 'data:image/png;base64,' + data.predicciones; 
+                    gifContainer.appendChild(predicciones);
+                } else {
+                    gifContainer.innerHTML += '<p>No se procesaron imágenes de calles.</p>';
+                }
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
