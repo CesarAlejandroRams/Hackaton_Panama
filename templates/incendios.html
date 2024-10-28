@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis-Prediccion de desastres naturales</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="icon" href="fuego2.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 class = "h1">Análisis de Incendio</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="file:///C:/Users/darik/Downloads/CoperTry-main%20(1)/CoperTry-main/templates/index.html">Inicio</a></li>
+                <li><a href="paginaAnalisis2.html">Inundaciones</a></li>
+                <li><a href="#informacion">Informacion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="contenedor2"> 
+     <div class="contenedor">
+        <img src="ensenada.jpg" alt="Descripción de la imagen" class="imagen">
+        <section id="descripcion">
+            <h2>Ensenada</h2>
+            <h3 class ="pais" >Pais: Mexico</h3>
+            <h3 class ="Estado">Estado: Baja California</h3>
+            <h3 class = "Municipio">Municipio : Ensenada</h3>
+            <p>Ensenada es una ciudad portuaria mexicana en el lado del Pacífico de la península de Baja California. 
+                En Ensenada, México, los incendios forestales ocurren con cierta frecuencia, especialmente durante las temporadas de calor y sequía. La región de Baja California, donde se encuentra Ensenada, tiene un clima mediterráneo semiárido, lo que significa que los veranos son calurosos y secos, mientras que las lluvias se concentran en el invierno. Esto, junto con factores como la baja humedad y los fuertes vientos, crea condiciones propicias para incendios forestales, especialmente en las áreas rurales y montañosas.
+            </p>
+            <p>Los incendios en Ensenada y sus alrededores suelen intensificarse entre finales de primavera y otoño. Además de las condiciones climáticas, otros factores como la expansión urbana, la agricultura, y las prácticas agrícolas también contribuyen a un mayor riesgo de incendios en la región.
+            </p>
+            <img src="grafica.jpg" alt="Descripción de la imagen" class="imagen2">
+        </section>
+     </div>
+
+
+     <h2 class = "progress">Nivel de riesgo  12/10/24</h2>
+     <progress id="progressBar" value="70" max="100"></progress>
+     <p id="progressText" class = "porcentaje">70%</p>
+
+     <main>
+        <section id="mapa">
+            <h2>Zonas seguras</h2>
+            <p>Descripción del mapa.</p>
+        </section>
+
+        <section id="datos">
+            <h2>Zonas a evitar</h2>
+            <p>Descripción del mapa.</p>
+        </section>
+
+        <section id="informacion">
+            <h2>Información Adicional</h2>
+            <p>Más detalles sobre desastres.</p>
+        </section>
+     </main>
+    <div class = "contenedorfiltro">
+     <img src="filtro.gif" class="filtro" >
+    </div>
+     <footer>
+        <ul>
+            <li>&copy; 2024 Rams Aerospace</li>
+        </ul>
+     </footer>
+     <img src="banner.png" alt="Imagen de fondo" class="imagen-bajo-footer" />
+    </div>
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+
+        function actualizarColor() {
+            const valor = progressBar.value;
+
+            // Cambia la clase a rojo si el valor es 70 o más
+            if (valor >= 70) {
+                progressBar.classList.add('rojo');
+            } else {
+                progressBar.classList.remove('rojo');
+            }
+
+            // Actualiza el texto del progreso
+            progressText.textContent = `${valor}%`;
+        }
+
+        // Llama a la función para aplicar el color inicial
+        actualizarColor();
+
+        // Simulación para cambiar el valor de la barra cada segundo
+        let valor = 0;
+        setInterval(() => {
+            valor = (valor + 10) % 110;
+            progressBar.value = valor;
+            actualizarColor();
+        }, 1000);
+
+
+        async function fetchIncendios() {
+            try {
+                const response = await fetch('http://localhost:5000/incendios');
+                if (!response.ok) {
+                    throw new Error('Error en la comunicación con el servidor');
+                }
+                const data = await response.json();
+                console.log('Comunicación exitosa:', data);
+                
+            } catch (error) {
+                console.error('Error al hacer la solicitud:', error);
+            }
+        }
+    </script>
+</body>
+</html>
