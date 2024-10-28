@@ -1,0 +1,40 @@
+[
+    {
+        "_id": "0045038d-14b8-47b2-ab83-d60b97fd478c-pin",
+        "title": "Sentinel-1 IW VV+VH: RGB ratio (Default)",
+        "group": null,
+        "highResImageUrl": null,
+        "datasetId": "S1_CDAS_IW_VVVH",
+        "themeId": "DEFAULT-THEME",
+        "layerId": "8_RGB-RATIO",
+        "lat": 13.67346,
+        "lng": -89.2265,
+        "zoom": 9,
+        "fromTime": "2024-10-16T00:00:00.000Z",
+        "toTime": "2024-10-16T23:59:59.999Z",
+        "visualizationUrl": "https://sh.dataspace.copernicus.eu/ogc/wms/ea820656-1f43-408b-9554-afc79eea489a",
+        "evalscript": "",
+        "evalscripturl": "",
+        "dataFusion": [],
+        "tag": "v1.12.5",
+        "gain": 1,
+        "gamma": 1,
+        "redRange": [
+            0,
+            1
+        ],
+        "greenRange": [
+            0,
+            1
+        ],
+        "blueRange": [
+            0,
+            1
+        ],
+        "dateMode": "SINGLE",
+        "demSource3D": "MAPZEN",
+        "terrainViewerSettings": null,
+        "orbitDirection": null,
+        "cloudCoverage": 30
+    }
+]

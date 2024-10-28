@@ -1,0 +1,40 @@
+[
+    {
+        "_id": "deca7c3d-5d2c-4c4f-bab3-25155758eb17-pin",
+        "title": "Sentinel-1 IW VV+VH: SAR urban (Default)",
+        "group": null,
+        "highResImageUrl": null,
+        "datasetId": "S1_CDAS_IW_VVVH",
+        "themeId": "DEFAULT-THEME",
+        "layerId": "9_SAR-URBAN",
+        "lat": 13.305934274136451,
+        "lng": -87.64742425182783,
+        "zoom": 11,
+        "fromTime": "2024-10-16T00:00:00.000Z",
+        "toTime": "2024-10-16T23:59:59.999Z",
+        "visualizationUrl": "https://sh.dataspace.copernicus.eu/ogc/wms/ea820656-1f43-408b-9554-afc79eea489a",
+        "evalscript": "",
+        "evalscripturl": "",
+        "dataFusion": [],
+        "tag": "v1.12.5",
+        "gain": 1,
+        "gamma": 1,
+        "redRange": [
+            0,
+            1
+        ],
+        "greenRange": [
+            0,
+            1
+        ],
+        "blueRange": [
+            0,
+            1
+        ],
+        "dateMode": "SINGLE",
+        "demSource3D": "MAPZEN",
+        "terrainViewerSettings": null,
+        "orbitDirection": null,
+        "cloudCoverage": 30
+    }
+]

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Copernicus try</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./imagenes/logo rams.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <style>
+        /* Estilos para el slider */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            overflow: hidden;
+            margin: auto;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none; /* Añadir esta línea */
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto; /* Añadir esta línea */
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-overlay {
+            position: absolute;
+            bottom: 70px;
+            left: 20px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            transform: translateY(-50%);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        
+        /* Estilos para los botones */
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header id="home" class="hero">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <h2 class="nav__title">Predicción de Desastres Naturales.</h2>
+            </div>
+            <ul class="nav__link nav__link--menu">
+                <li class="nav__items"><a href="#home" class="nav__links">Inicio</a></li>
+                <li class="nav__items"><a href="#data" class="nav__links">Datos</a></li>
+                <li class="nav__items"><a href="#map" class="nav__links">Información</a></li>
+                <li class="nav__items"><a href="#info" class="nav__links">Contacto</a></li>
+            </ul>
+            <img src="./imagenes/cerrar.svg" alt="error al cargar la imagen" class="nav__close">
+            <div class="nav__menu">
+                <img src="./imagenes/menu.svg" alt="error al cargar la imagen" class="nav__img">
+            </div>
+        </nav>
+        <section class="hero__container container">
+            <h1 class="hero__title">Predicción de Desastres Naturales.</h1>
+            <p class="hero__paragraph">Utilizando datos de Copernicus para anticipar eventos naturales.</p>
+            <a href="#boton" class="cta">Comienza ahora</a>
+        </section>
+    </header>
+    
+    <main>
+        <section id="boton">
+            <section class="container about">
+                <h2 class="subtitle">¿Qué encontrarás en este sitio?</h2>
+                <p>Es muy conocido que los desastres naturales han hecho que muchas familias hayan perdido sus hogares, haciendo que haya un retroceso tanto en el crecimiento de una sociedad estable como también económicamente en los lugares afectados.
+                    Así que nosotros ofrecemos con el apoyo del código de Copernicus realizar un programa de monitoreo automatizado, donde usando como apoyo las imágenes de los satélites, predecir el desastre que se desea encontrar, tales como inundaciones, usar patrones del pasado y con apoyo de un sismómetro para poder predecir un sismo y poder detectar a tiempo un incendio en los bosques para evitar su propagación.</p>
+                <div class="about__main">
+                    <article class="about__icons">
+                        <img src="./imagenes/sushi.svg" class="about__icon">
+                        <h3 class="about__title">Factor de Riesgo</h3>
+                    </article>
+                    <article class="about__icons">
+                        <img src="./imagenes/mapa.svg" class="about__icon">
+                        <h3 class="about__title">Localización del Desastre</h3>
+                    </article>
+                    <article class="about__icons">
+                        <img src="./imagenes/mapa.svg" class="about__icon">
+                        <h3 class="about__title">Desastres</h3>
+                    </article>
+                </div>
+            </section>
+        </section>
+        
+        <div class="selecciona">
+            <h1>Selecciona el desastre que deseas conocer</h1>
+            <p>""</p>
+        </div>
+
+        <!-- Slider -->
+        <div class="slider">
+            <div class="slide active">
+                <img src="/imagenes/bish.jpg" alt="Imagen 1">
+                <div class="text-overlay">Texto para la Imagen 1</div>
+                <div class="button-container">
+                    <button class="button" onclick="window.location.href='inundaciones.html'">Inundaciones</button>
+                </div>
+            </div>
+           
+            <div class="slide">
+                <img src="/imagenes/fire.jpg" alt="Imagen 2">
+                <div class="text-overlay">Texto para la Imagen 2</div>
+                <div class="button-container">
+                    <button class="button" onclick="window.location.href='incendios.html'">Incendios</button>
+                </div>
+            </div>
+
+            <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <script>
+            let slideIndex = 0;
+
+            function showSlide(n) {
+                const slides = document.querySelectorAll(".slide");
+                slides.forEach((slide, index) => {
+                    slide.classList.remove("active");
+                });
+                slides[n].classList.add("active");
+            }
+
+            function changeSlide(step) {
+                const slides = document.querySelectorAll(".slide");
+                slideIndex = (slideIndex + step + slides.length) % slides.length;
+                showSlide(slideIndex);
+            }
+
+            // Cambio de imagen automático
+            setInterval(() => changeSlide(1), 3000);
+        </script>
+
+        <section class="knowledge">
+            <div class="knowledge__container container">
+                <div class="knowledge__texts">
+                    <h2 class="subtitle">Iniciar sesión en Copernicus</h2>
+                    <p class="knowledge__paragraph">Recuerda que debes registrarte en la página Copernicus para poder obtener tu cuenta e iniciar sesión.</p>
+                    <div class="login-container">
+                        <h2>Iniciar Sesión</h2>
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="username">Nombre de usuario</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn">Iniciar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+                <figure class="knowledge__picture">
+                    <img src="./imagenes/dos.jpeg" class="knowledge">
+                </figure>
+            </div>
+        </section>
+        
+        <section id="info">
+            <h2>¿Cómo Funciona?</h2>
+            <p>Explicación de cómo se generan las predicciones utilizando los datos de Copernicus.</p>
+        </section>
+
+        <section id="map">
+            <footer class="footer">
+                <section class="footer__container container">
+                    <nav class="nav nav--footer">
+                        <h2 class="footer__title">Equipo RAMS</h2>
+                        <ul class="nav__link nav__link--footer">
+                            <li class="nav__items"><a href="#" class="nav__links">Inicio</a></li>
+                            <li class="nav__items"><a href="#" class="nav__links">Contacto</a></li>
+                            <li class="nav__items"><a href="#" class="nav__links">Información</a></li>
+                        </ul>
+                    </nav>
+                    <form class="footer__form" action="https://formspree.io/f/mknkkrkj" method="POST">
+                        <h2 class="footer__newsletter">Suscríbete a nuestra página</h2>
+                        <div class="footer__inputs">
+                            <input type="email" placeholder="Email:" class="footer__input" name="_replyto" required>
+                            <input type="submit" value="Regístrate" class="footer__submit">
+                        </div>
+                    </form>
+                </section>
+                <section class="footer__copy container">
+                    <div class="footer__social">
+                        <a href="#" class="footer__icons"><img src="./imagenes/ig.svg" class="footer__img"></a>
+                    </div>
+                    <h3 class="footer__copyright">Derechos reservados &copy; Contacto: @gibrambrambram, @ddarcy_92</h3>
+                </section>
+            </footer>
+        </section>
+    </main>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/menu.js"></script>
+</body>
+</html>
